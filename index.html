@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Permanent quota transfer — recipient search prototypes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #26374A; --accent: #A62A1E; --link: #284162; --link-hover: #0535D2;
+    --border: #D6D9DD; --well: #F1F2F3; --text: #333333; --muted: #545961;
+    --heading: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+    --body: 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--well); font-family: var(--body); color: var(--text); -webkit-font-smoothing: antialiased; }
+  a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+  a:hover { color: var(--link-hover); }
+  .page { max-width: 1000px; margin: 0 auto; background: #fff; border: 1px solid var(--border); min-height: 100vh; }
+  .fip { display: flex; align-items: center; justify-content: space-between; padding: 14px 28px; border-bottom: 1px solid var(--border); }
+  .fip-sig { display: flex; align-items: center; gap: 12px; }
+  .fip-sig svg { height: 22px; width: auto; display: block; }
+  .fip-sig div { font-family: var(--heading); font-weight: 700; font-size: 14px; line-height: 1.25; }
+  .fip-sig div span { font-weight: 400; }
+  .banner { background: var(--blue); padding: 16px 28px; }
+  .banner div { font-family: var(--heading); font-size: 20px; font-weight: 700; color: #fff; }
+  .body { padding: 36px 28px 56px; }
+  .eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-family: var(--heading); font-size: 39px; font-weight: 700; line-height: 1.15; margin: 12px 0 0; position: relative; padding-bottom: 14px; display: inline-block; }
+  .redbar { width: 72px; height: 6px; background: var(--accent); margin: 2px 0 0; }
+  .lede { font-size: 19px; line-height: 1.55; color: var(--text); margin: 20px 0 8px; max-width: 65ch; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+  .card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+  .card .top { height: 6px; background: var(--blue); }
+  .card .inner { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+  .card h2 { font-family: var(--heading); font-size: 24px; font-weight: 700; margin: 0 0 6px; }
+  .tag { display: inline-block; align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; margin-bottom: 14px; }
+  .tag.mid { background: var(--well); color: var(--muted); border: 1px solid var(--border); }
+  .tag.hi { background: #D7E5F5; color: var(--blue); }
+  .card p { font-size: 16px; line-height: 1.55; color: var(--text); margin: 0 0 20px; }
+  .open { margin-top: auto; align-self: flex-start; background: var(--blue); color: #fff; text-decoration: none; font-weight: 600; font-size: 16px; padding: 11px 22px; border-radius: 4px; }
+  .open:hover { background: #2B4380; color: #fff; }
+  .notes { margin-top: 40px; border-top: 1px solid var(--border); padding-top: 24px; }
+  .notes h3 { font-family: var(--heading); font-size: 20px; font-weight: 700; margin: 0 0 12px; }
+  .notes ul { margin: 0; padding-left: 20px; }
+  .notes li { font-size: 16px; line-height: 1.6; margin-bottom: 6px; max-width: 70ch; }
+  .tag.a11y { background: #DCEFE4; color: #15683f; }
+  .open.secondary { background: #fff; color: #2B4380; border: 2px solid #2B4380; padding: 9px 20px; }
+  .open.secondary:hover { background: #F1F5FB; color: #2B4380; }
+  .btnrow { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } h1 { font-size: 31px; } }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="fip">
+      <div class="fip-sig">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.299 32.583"><path d="M 0 0 L 16.193 0 L 16.193 32.583 L 0 32.583 L 0 0 Z M 52.105 0 L 68.299 0 L 68.299 32.583 L 52.105 32.583 L 52.105 0 Z M 31.903 6.781 L 34.215 2.128 L 36.51 6.611 C 36.796 7.085 37.029 7.046 37.486 6.82 L 39.459 5.855 L 38.176 12.115 C 37.908 13.344 38.615 13.705 39.385 12.871 L 42.198 9.9 L 42.945 11.581 C 43.196 12.089 43.574 12.015 44.075 11.924 L 46.98 11.32 L 46.004 14.947 L 46.004 15.025 C 45.89 15.499 45.662 15.894 46.198 16.124 L 47.231 16.632 L 41.218 21.641 C 40.607 22.262 40.818 22.453 41.046 23.153 L 41.6 24.834 L 36.013 23.835 C 35.323 23.665 34.844 23.665 34.826 24.212 L 35.055 30.546 L 33.376 30.546 L 33.604 24.23 C 33.604 23.609 33.125 23.626 31.996 23.856 L 26.813 24.838 L 27.481 23.157 C 27.71 22.514 27.771 22.08 27.253 21.645 L 21.147 16.706 L 22.277 16.024 C 22.602 15.777 22.62 15.516 22.448 14.964 L 21.301 11.294 L 24.246 11.915 C 25.068 12.106 25.297 11.915 25.508 11.481 L 26.33 9.817 L 29.24 13.031 C 29.754 13.635 30.484 13.24 30.255 12.371 L 28.857 5.586 L 31.02 6.815 C 31.363 7.024 31.727 7.08 31.938 6.685" fill="#EB2D37" fill-rule="nonzero"></path></svg>
+        <div>Government of Canada<br><span>Gouvernement du Canada</span></div>
+      </div>
+      <a href="#">Français</a>
+    </div>
+    <div class="banner"><div>Canadian Fisheries Information System</div></div>
+
+    <div class="body">
+      <div class="eyebrow">Permanent quota transfer &middot; UX prototype</div>
+      <h1>Search and select recipient(s)</h1>
+      <div class="redbar"></div>
+      <p class="lede">Two working prototypes of the recipient search and selection step (Step 2 of 5). Both demonstrate the same behaviour — selections persist across multiple searches in a cumulative "Selected recipients" bucket. Open either to try it.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="top"></div>
+          <div class="inner">
+            <span class="tag mid">Mid-fidelity</span>
+            <h2>Mid-fi replica</h2>
+            <p>A faithful coded rendition of the annotated wireframes — greyscale, functional, matching the original layout and states.</p>
+            <a class="open" href="Recipient Search - Mid-fi.html">Open prototype</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="top"></div>
+          <div class="inner">
+            <span class="tag hi">Hi-fidelity &middot; GCDS</span>
+            <h2>GC Design System version</h2>
+            <p>The same flow styled to the GC Design System — FIP signature, Lato/Noto type, GCDS tabs, and a striped results table.</p>
+            <a class="open" href="Recipient Search - GCDS.html">Open prototype</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="top"></div>
+          <div class="inner">
+            <span class="tag a11y">Accessibility-first</span>
+            <h2>Accessibility prototype</h2>
+            <p>The GCDS version rebuilt with semantic landmarks, one h1, native form controls with labelled helper text and errors, a real results table, an ARIA tab pattern, and visible focus — for testing in assistive tech (Fable) before development.</p>
+            <div class="btnrow">
+              <a class="open" href="Recipient Search - Accessible.html">Open prototype</a>
+              <a class="open secondary" href="Accessibility Implementation Report.html">Read the report</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h3>How to try it</h3>
+        <ul>
+          <li>The licence number is pre-filled with <strong>1006001</strong> (3 results). Select a recipient or two.</li>
+          <li>Clear the search and search <strong>18465805000</strong> for a different set, then select more.</li>
+          <li>Open the <strong>Selected recipients</strong> tab — your earlier picks are still there. The tab count keeps a running total across searches.</li>
+          <li>Use <strong>Clear all</strong> (with a confirm) to reset selections. Screen-reader announcements fire on every add, remove and clear.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
